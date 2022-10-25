@@ -9,15 +9,16 @@ const {data} = useData()
 
   return (
     <GridContainer>
-        {
+         {
             data.map(product => 
             <Product 
             key={product.id}
             id={product.id} 
             name={product.name} 
             marca={product.marca} 
-            stock={product.stock}></Product>)
-        }
+            stock={product.stock}/>
+            )
+         }
     </GridContainer>
   )
 }
@@ -27,7 +28,7 @@ const GridContainer = styled.div`
 display: grid;
 grid-template-columns: repeat(4,1fr);
 gap:30px;
-padding: 10px;
+padding: 20px;
 background-color: #f8f9fa;
 border-radius: 5px;
 width: 1100px;

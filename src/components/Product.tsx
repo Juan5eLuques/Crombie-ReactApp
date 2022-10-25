@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { ProductType } from '../types/Product';
-
+import { EditButton } from './EditButton';
 
 
 export const Product = ({id, name, marca,stock} : ProductType) => {
@@ -16,6 +16,7 @@ export const Product = ({id, name, marca,stock} : ProductType) => {
         <Description>
           <p>Descripcion...</p>
         </Description>
+        <Stock>En stock: {stock}</Stock>
       </ProductContainer>
     );
 
@@ -23,14 +24,16 @@ export const Product = ({id, name, marca,stock} : ProductType) => {
 
 const ProductContainer = styled.div`
   background-color: #fff;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   color:#000;
   height: 230px;
   width: auto;
   cursor: pointer;
-  transition: transform .1s;
+  position: relative;
+  transition: transform 0.3s;
   border-radius: 10px;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
   :hover {
     transform: scale(1.002);
   }
@@ -63,5 +66,15 @@ const Description = styled.div`
 
 font-size: 10px;
 text-align: center;
+
+`
+
+const Stock = styled.span`
+
+font-size: 12px;
+position: absolute;
+left: 0;
+bottom: 0;
+margin: 10px;
 
 `
