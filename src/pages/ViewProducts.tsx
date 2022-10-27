@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { EditButton } from "../components/EditButton";
 import { ListProduct } from "../components/ListProduct";
-import { AiFillEdit } from 'react-icons/ai';
+import { MdOutlineEditOff, MdOutlineEdit } from 'react-icons/md';
 
 export const ViewProducts = () => {
 
@@ -15,7 +14,7 @@ export const ViewProducts = () => {
 
   return (
     <ContentContainer>
-      <Button onClick={handleChangeEdit} color={isEdit? '#80ed99' : '#d00000'}><AiFillEdit size={42}></AiFillEdit></Button>
+      <Button onClick={handleChangeEdit}>{isEdit? <MdOutlineEdit size={32}/> : <MdOutlineEditOff size={32}/>}</Button>
       <h1><strong> Products </strong></h1>
       <Container>
         <ListProduct isManagment={isEdit}/>
@@ -44,7 +43,7 @@ position: absolute;
 right: 0;
 top: 0;
 border-radius: 50%;
-border:none;
+border:none; 
 height: 50px;
 width: 50px;
 background-color: ${props=> props.color};

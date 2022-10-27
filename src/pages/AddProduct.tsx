@@ -9,20 +9,20 @@ const {data,handleChangeDescription, handleChangeMarca, handleChangeName, handle
 
   return (
     <Container>
-        <h1> 📝 New product ! </h1>
+        <h1> 📦 New product </h1>
         <FormContainer>
             <Form onSubmit={(e) => {e.preventDefault() ; addProduct()}}>
                <InputContainer>
-                 <span>Name</span><Input value={data.name} type='text' onChange={(e) => handleChangeName(e.target.value)}/>
+                 <h4>Name</h4><Input value={data.name} type='text' onChange={(e) => handleChangeName(e.target.value)}/>
                </InputContainer>
                <InputContainer>
-               <span>Brand</span><Input value={data.marca} type='text'onChange={(e) => handleChangeMarca(e.target.value)}/>
+               <h4>Brand</h4><Input value={data.marca} type='text'onChange={(e) => handleChangeMarca(e.target.value)}/>
                </InputContainer>
                <InputContainer>
-               <span>Stock</span><Input value={data.stock} type='number'onChange={(e) => handleChangeStock(Number(e.target.value))}/>
+               <h4>Stock</h4><Input value={data.stock} type='number'onChange={(e) => handleChangeStock(Number(e.target.value))}/>
                </InputContainer>
                <InputContainer>
-               <span>Description</span><TextArea value={data.description} onChange={(e) => handleChangeDescription(e.target.value)}/>
+               <h4>Description</h4><TextArea value={data.description} onChange={(e) => handleChangeDescription(e.target.value)}/>
                </InputContainer>
                <Button color='#4ecdc4'>Add</Button>
             </Form>
@@ -45,6 +45,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 90%;
+margin: 5px;
 padding: 0 75px 0 75px;
 min-width: auto;
 border-radius: 20px;
@@ -88,7 +89,7 @@ const TextArea = styled.textarea`
     font-size: 18px;
     padding: 5px 5px;
     resize: none; /*remove the resize handle on the bottom right*/
-
+    border: 1px solid #d3d3d3;
     :focus{
         border-width: 0.1px;
         border-style: solid;

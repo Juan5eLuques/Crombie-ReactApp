@@ -29,6 +29,7 @@ export const ListProduct = ({ isManagment }: Props) => {
                     marca={product.marca}
                     stock={product.stock}
                     description={product.description}
+                    isManagment={isManagment}
                   />
                 </Link>
               ))}
@@ -43,6 +44,7 @@ export const ListProduct = ({ isManagment }: Props) => {
                   marca={product.marca}
                   stock={product.stock}
                   description={product.description}
+                  isManagment={isManagment}
                 />
               ))}
             </GridContainer>

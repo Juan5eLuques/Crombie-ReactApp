@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import { ProductType } from '../types/Product';
-import {Link} from 'react-router-dom'
+import { CiCircleRemove } from 'react-icons/ci'
+type Props = ProductType & {isManagment : boolean}
 
-export const Product = ({id,name, marca,stock,description} : ProductType) => {
+export const Product = ({id,name, marca,stock,description, isManagment} : Props) => {
 
     return (
           <ProductContainer>
             <CardHeader>
+              {isManagment? <DeleteButton size={28} cursor='pointer'/> : <></>}
               <Marca>
                 <strong>{marca}</strong>
               </Marca>
@@ -32,7 +34,7 @@ const ProductContainer = styled.div`
   cursor: pointer;
   transition: transform 0.3s;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 0.5px 0px rgba(0, 0, 0, 0.1);
   :hover {
     transform: scale(1.003);
   }
@@ -73,4 +75,20 @@ left: 0;
 bottom: 0;
 margin: 10px;
 
+`
+
+const DeleteButton = styled(CiCircleRemove)`
+box-sizing: border-box;
+position: absolute;
+left: 0;
+top: 0;
+background: none;
+padding: 0;
+border:none;
+outline:none;
+transition: color 900ms;
+
+:hover{ 
+  color: red;
+}
 `
