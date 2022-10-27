@@ -1,23 +1,22 @@
 import styled from 'styled-components'
 import { ProductType } from '../types/Product';
-import { EditButton } from './EditButton';
+import {Link} from 'react-router-dom'
 
+export const Product = ({id,name, marca,stock,description} : ProductType) => {
 
-export const Product = ({id, name, marca,stock} : ProductType) => {
-    
     return (
-      <ProductContainer>
-        <CardHeader>
-          <Marca>
-            <strong>{marca}</strong>
-          </Marca>
-        </CardHeader>
-        <Name>{name}</Name>
-        <Description>
-          <p>Descripcion...</p>
-        </Description>
-        <Stock>En stock: {stock}</Stock>
-      </ProductContainer>
+          <ProductContainer>
+            <CardHeader>
+              <Marca>
+                <strong>{marca}</strong>
+              </Marca>
+            </CardHeader>
+            <Name>{name}</Name>
+            <Description>
+              <p>{description}</p>
+            </Description>
+            <Stock>En stock: {stock}</Stock>
+          </ProductContainer>
     );
 
 }
@@ -26,16 +25,16 @@ const ProductContainer = styled.div`
   background-color: #fff;
   display: flex;
   flex-direction: column;
+  position: relative;
   color:#000;
   height: 230px;
   width: auto;
   cursor: pointer;
-  position: relative;
   transition: transform 0.3s;
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1);
   :hover {
-    transform: scale(1.002);
+    transform: scale(1.003);
   }
 `
 
@@ -63,14 +62,11 @@ margin: 30px;
 `
 
 const Description = styled.div`
-
 font-size: 10px;
 text-align: center;
-
 `
 
 const Stock = styled.span`
-
 font-size: 12px;
 position: absolute;
 left: 0;

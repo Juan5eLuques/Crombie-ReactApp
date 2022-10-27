@@ -3,8 +3,8 @@ import { SVGProps } from "react"
 
 export const EditButton = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg"
-   width={18}
-   height={18}
+   width={32}
+   height={32}
    viewBox= "0 0 48 48"
    {...props}>
     <path
