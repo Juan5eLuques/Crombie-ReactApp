@@ -1,16 +1,16 @@
-import React from "react";
 import { useData } from "../hooks/useData";
 import { Product } from "./Product";
 import styled from "styled-components";
 import { Ring } from "@uiball/loaders";
-import { Link } from "react-router-dom";
+import useProduct from "../context/SearchContext";
 
 type Props = {
-  isManagment: boolean;
+  isEdit: boolean;
 };
 
-export const ListProduct = ({ isManagment }: Props) => {
-  const { data, loading } = useData();
+export const ListProduct = ({ isEdit }: Props) => {
+  const { product } = useProduct();
+  const { loading, setRefreshData } = useData();
 
   return (
     <>
@@ -18,37 +18,27 @@ export const ListProduct = ({ isManagment }: Props) => {
         <Ring size={56} color="#fff" />
       ) : (
         <div>
-          {isManagment ? (
-            <GridContainer>
-              {data.map((product) => (
-                <Link to={'/edit/id/'+ product.id}>
-                  <Product
-                    key={product.id}
-                    id={product.id}
-                    name={product.name}
-                    marca={product.marca}
-                    stock={product.stock}
-                    description={product.description}
-                    isManagment={isManagment}
-                  />
-                </Link>
-              ))}
-            </GridContainer>
-          ) : (
-            <GridContainer>
-              {data.map((product) => (
+          <GridContainer>
+            {product.length !== 0 ? (
+              product.map((product) => (
                 <Product
+                  precio={product.precio}
                   key={product.id}
                   id={product.id}
                   name={product.name}
                   marca={product.marca}
                   stock={product.stock}
                   description={product.description}
-                  isManagment={isManagment}
+                  isManagment={isEdit}
+                  setRefresh={setRefreshData}
                 />
-              ))}
-            </GridContainer>
-          )}
+              ))
+            ) : (
+              <MessageNotFoundResults>
+                NO SE ENCONTRARON RESULTADOS
+              </MessageNotFoundResults>
+            )}
+          </GridContainer>
         </div>
       )}
     </>
@@ -57,11 +47,24 @@ export const ListProduct = ({ isManagment }: Props) => {
 
 const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  padding: 20px;
-  background-color: #f8f9fa;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  justify-items: center;
+  row-gap: 40px;
+  column-gap: 20px;
+  padding: 30px 5px;
+  min-height: 75vh;
+  align-items: center;
+  background-color: transparent;
   border-radius: 5px;
   width: 90vw;
-  margin-bottom: 20px;
+`;
+
+const MessageNotFoundResults = styled.div`
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
 `;

@@ -1,35 +1,61 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { ButtonMenu } from '../components/ButtonMenu'
+import { useState } from "react";
+import styled from "styled-components";
+import { ListProduct } from "../components/ListProduct";
+import { MdOutlineEditOff, MdOutlineEdit } from "react-icons/md";
+import { SearchProducts } from "../components/SearchProducts";
+import { ProductContextProvider } from "../context/SearchContext";
 
 export const Home = () => {
+  const [isEdit, setIsEdit] = useState(false);
+
+  const handleChangeEdit = () => {
+    setIsEdit((prev) => !prev);
+  };
+
   return (
-    <ContainerHome>
-      <ContainerMenu>
-          <Link to='/view-products'><ButtonMenu title='Ver Productos' color='#ffd60a'></ButtonMenu></Link>
-          <Link to='/product-managment'><ButtonMenu title='Editar Productos' color='#6a994e'></ButtonMenu></Link>
-          <Link to='/add-product'><ButtonMenu title='Agregar Producto' color='#0077b6'></ButtonMenu></Link>
-          <Link to='/product-managment'><ButtonMenu title='Eliminar Producto' color='#d62828'></ButtonMenu></Link>
-      </ContainerMenu>
-    </ContainerHome>
-  )
-}
+    <ProductContextProvider>
+      <ContentContainer>
+        <Button onClick={handleChangeEdit}>
+          {isEdit ? (
+            <MdOutlineEdit size={28} />
+          ) : (
+            <MdOutlineEditOff size={28} />
+          )}
+        </Button>
+        <SearchProducts></SearchProducts>
+        <Container>
+          <ListProduct isEdit={isEdit} />
+        </Container>
+      </ContentContainer>
+    </ProductContextProvider>
+  );
+};
 
-const ContainerMenu = styled.div`
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+`;
 
-display: grid;
-align-items: center;
-grid-template-columns: repeat(2,1fr);
-justify-content: center;
-gap: 20px;
+const ContentContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-direction: column;
+  margin: 2.5rem 0;
+`;
 
-`
-const ContainerHome = styled.div`
-height:90vh;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-
-`
+const Button = styled.button`
+  margin: 12px 15px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+  border: none;
+  height: 40px;
+  width: 40px;
+  background-color: ${(props) => props.color};
+  cursor: pointer;
+`;

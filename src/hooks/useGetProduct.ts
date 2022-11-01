@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { editProduct } from "../services/editProduct";
 import { ProductType } from "../types/Product";
 
 export const useGetProduct = (id : number) =>  {
 
-    const [product, setProduct] = useState<ProductType>({id :id ,name:'',marca:'', stock:0, description:''})
+    const [product, setProduct] = useState<ProductType>({id :id ,name:'',marca:'', stock:0, description:'', precio:0})
 
     useEffect(()=> {
         fetch(`https://express-production.up.railway.app/product/${id}`).
